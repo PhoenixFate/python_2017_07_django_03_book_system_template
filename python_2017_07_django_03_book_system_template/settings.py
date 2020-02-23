@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bookInfo.apps.BookinfoConfig',
+    # 'bookInfo.apps.BookinfoConfig',
+    'bookInfo',
+    'bookInfo.templatetags',
 ]
 
 MIDDLEWARE = [
@@ -77,8 +79,12 @@ WSGI_APPLICATION = 'python_2017_07_django_03_book_system_template.wsgi.applicati
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'python_2017_book_system',
+        'USER': 'root',
+        'PASSWORD': 'centos123qwer',
+        'HOST': '114.67.89.253',
+        'PORT': 3306
     }
 }
 

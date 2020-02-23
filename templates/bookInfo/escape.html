@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Escape</title>
+</head>
+<body>
+{# html转义 #}
+<h3>默认是转义的</h3>
+{{ content }}
+<h3>使用safe过滤器关闭转义</h3>
+{{ content |safe }} <br>
+<h3>使用auto escape off标签关闭转义</h3>
+{% autoescape off %}
+{{ content }} <br>
+{% endautoescape %}
+
+模板硬编码不转义 <br>
+{{ test|default:'<h1>test default</h1>' }}
+手动进行转义
+{{ test|default:'&lt; h1 &gt; test default &lt;/h1 &gt;' }}
+
+</body>
+</html>

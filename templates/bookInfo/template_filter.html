@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load filters %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>模板过滤器</title>
+    <style>
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .blue{
+            background-color: cornflowerblue;
+        }
+        .little-green{
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<h3>for循环遍历</h3>
+<h4>forloop.counter 获得遍历的index</h4>
+
+{#模板注释内容#}
+单行注释 <br>
+{# xxxx #}
+多行注释 <br>
+{% comment %}
+这里面所有的内容都会被注释
+{% endcomment %}
+html注释 <br>
+<!-- html 注释-->
+
+
+<ul>
+    {% for book in all_books %}
+        {% if book.id <= 2 %}
+            <li class="red">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length }} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+        {% elif book.id <= 5 %}
+            <li class="yellow">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+        {% else %}
+            <li class="green">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>自定义过滤器</h3>
+<ul>
+    {% for book in all_books %}
+    {% if book.id|is_even %}
+        <li class="blue">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+    {% else %}
+        <li class="little-green">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>自定义过滤器-两个参数</h3>
+<ul>
+    {% for book in all_books %}
+    {% if book.id|is_even_value:3%}
+        <li class="blue">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+    {% else %}
+        <li class="little-green">{{ forloop.counter }}: &nbsp;&nbsp;{{ book.title }} {{ book.title | length}} --{{ book.publish_date | date:'Y年-m月-d日'}}</li>
+    {% endif %}
+    {% endfor %}
+</ul>
+
+<h4>default过滤器，如果值不存在，会默认调用default过滤器</h4>
+{{ content | default:"该值不存在" }}
+</body>
+</html>

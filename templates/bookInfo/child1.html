@@ -1,0 +1,8 @@
+{% extends 'bookInfo/base.html' %}
+{% block title %} child1 {% endblock %}
+
+
+{% block b1 %}
+    {{ block.super }}
+    <h1>child1 重写了base模板中的内容</h1>
+{% endblock %}
